@@ -1,0 +1,672 @@
+#language:pt
+
+@Cadastro
+@CadastroLocalidades
+
+Funcionalidade: Cadastro de Localidades
+
+Cenario: Cadastrar Dependências
+Dado que cadastro a restrição de localidade "RESLOCDEPLOC"
+Dado que cadastro a origem "ORIDEPLOC" com a restrição de localidade "RESLOCDEPLOC" e Cep "07115-375"
+Dado que cadastro o destino "DESTDEPLOC" com a restrição de localidade "RESLOCDEPLOC" e Cep "78515-000"
+Dado que cadastro o embarcador "EMBDEPLOC"
+Dado que cadastro o agrupador de zt "AZTDEPLOC"
+Dado que cadastro a zona de transporte "ZTDEPLOC" do tipo região do agrupador do agrupador "AZTDEPLOC" com a restrição de localidade "RESLOCDEPLOC" e prioridade "0"
+Dado que cadastro o tempo de espera "TEMPESPDEPLOC" para o agrupador de zt "AZTDEPLOC"
+Dado que libero todas as tarefas de geolocalização
+
+Cenario: Cadastrar localidade de destino com sucesso
+Dado que acesso a tela "Cadastro", "Localidades"
+E clico no botão Cadastro
+Quando preencho o campo Codigo "Localidade1",  Nome "Localidade1" e Descrição "Localidade1"
+Quando seleciono o tipo de localidade "Destino"
+Quando seleciono a restrição geral "RESLOCDEPLOC"
+Quando seleciono o tempo de espera "TEMPESPDEPLOC"
+Quando seleciono a restrição "RESLOCDEPLOC" para o embarcador "EMBDEPLOC"
+Quando seleciono o Pais "Brasil", estado "São Paulo" e cidade "São Paulo (SP)"
+Quando preencho o endereço "Av. Engenheiro Luís Carlos Berrini"
+Quando preencho o CEP "04571011"
+Quando preencho a latitude "-23,610932"
+Quando preencho a longitude "-46,694757"
+Quando preencho o responsavel "Usuario1" e email "usuario1@teste.com"
+E clico no botão Salvar
+Entao é exibido a mensagem "A entidade foi salva com sucesso."
+E clico no botão OK
+E Clico no botão voltar
+E excluo o cadastro gerado no teste com o codigo "Localidade1"
+
+Cenario: Cadastrar localidade de destino com sucesso - Geocodificação reversa pelas coordenadas - TA-174
+Dado que acesso a tela "Cadastro", "Localidades"
+E clico no botão Cadastro
+Quando preencho o campo Codigo "Localidade102",  Nome "Localidade102" e Descrição "Localidade102"
+Quando seleciono o tipo de localidade "Destino"
+Quando seleciono a restrição geral "RESLOCDEPLOC"
+Quando seleciono o tempo de espera "TEMPESPDEPLOC"
+Quando seleciono a restrição "RESLOCDEPLOC" para o embarcador "EMBDEPLOC"
+Quando preencho a latitude "-23,675327"
+Quando preencho a longitude "-46,533574"
+Quando preencho o responsavel "Usuario1" e email "usuario1@teste.com"
+E geolocalizo pelas coordenadas
+E clico no botão Salvar
+Entao é exibido a mensagem "A entidade foi salva com sucesso."
+E clico no botão OK
+E Clico no botão voltar
+E excluo o cadastro gerado no teste com o codigo "Localidade102"
+
+Cenario: Cadastrar localidade de destino sem sucesso - Geocodificação reversa pelas coordenadas
+Dado que acesso a tela "Cadastro", "Localidades"
+E clico no botão Cadastro
+Quando preencho o campo Codigo "Localidade103",  Nome "Localidade103" e Descrição "Localidade103"
+Quando seleciono o tipo de localidade "Destino"
+Quando seleciono a restrição geral "RESLOCDEPLOC"
+Quando seleciono o tempo de espera "TEMPESPDEPLOC"
+Quando seleciono a restrição "RESLOCDEPLOC" para o embarcador "EMBDEPLOC"
+Quando preencho a latitude "-23,433518"
+Quando preencho a longitude "-23,433518"
+Quando preencho o responsavel "Usuario1" e email "usuario1@teste.com"
+E geolocalizo pelas coordenadas
+Entao é exibido a mensagem "Endereço não encontrado pelo banco de dados geográfico"
+E clico no botão OK
+E Clico no botão voltar
+
+Cenario: Cadastrar localidade de destino com sucesso - geolocalização por endereço
+Dado que acesso a tela "Cadastro", "Localidades"
+E clico no botão Cadastro
+Quando preencho o campo Codigo "Localidade100",  Nome "Localidade100" e Descrição "Localidade100"
+Quando seleciono o tipo de localidade "Destino"
+Quando seleciono a restrição geral "RESLOCDEPLOC"
+Quando seleciono o tempo de espera "TEMPESPDEPLOC"
+Quando seleciono a restrição "RESLOCDEPLOC" para o embarcador "EMBDEPLOC"
+Quando seleciono o Pais "Brasil", estado "São Paulo" e cidade "Caieiras (SP)"
+Quando preencho o endereço "travessa presidente kennedy"
+E geolocalizo pelo endereço
+Quando preencho o CEP "07700000"
+Quando preencho o responsavel "Usuario1" e email "usuario1@teste.com"
+E clico no botão Salvar
+Entao é exibido a mensagem "A entidade foi salva com sucesso."
+E clico no botão OK
+E Clico no botão voltar
+E excluo o cadastro gerado no teste com o codigo "Localidade100"
+
+Cenario: Cadastrar localidade de destino sem sucesso - geolocalização por endereço
+Dado que acesso a tela "Cadastro", "Localidades"
+E clico no botão Cadastro
+Quando preencho o campo Codigo "Localidade101",  Nome "Localidade101" e Descrição "Localidade101"
+Quando seleciono o tipo de localidade "Destino"
+Quando seleciono a restrição geral "RESLOCDEPLOC"
+Quando seleciono o tempo de espera "TEMPESPDEPLOC"
+Quando seleciono a restrição "RESLOCDEPLOC" para o embarcador "EMBDEPLOC"
+Quando seleciono o Pais "Brasil", estado " " e cidade " "
+Quando preencho o endereço "av Braz Lemme"
+E geolocalizo pelo endereço
+Entao é exibido a mensagem "Endereço não encontrado pelo banco de dados geográfico"
+E clico no botão OK
+E Clico no botão voltar
+
+Cenario: Cadastrar localidade hub de destino com sucesso
+Dado que acesso a tela "Cadastro", "Localidades"
+E clico no botão Cadastro
+Quando preencho o campo Codigo "Localidade2",  Nome "Localidade2" e Descrição "Localidade2"
+Quando seleciono o tipo de localidade "Destino"
+Quando seleciona Hub de Destino
+Quando seleciono a restrição geral "RESLOCDEPLOC"
+Quando seleciono o tempo de espera "TEMPESPDEPLOC"
+Quando seleciono a restrição "RESLOCDEPLOC" para o embarcador "EMBDEPLOC"
+Quando seleciono o Pais "Brasil", estado "São Paulo" e cidade "São Paulo (SP)"
+Quando preencho o endereço "Av. Engenheiro Luís Carlos Berrini"
+Quando preencho o CEP "04571011"
+Quando preencho a latitude "-23,610932"
+Quando preencho a longitude "-46,694757"
+Quando preencho o responsavel "Usuario1" e email "usuario1@teste.com"
+E clico no botão Salvar
+Entao é exibido a mensagem "A entidade foi salva com sucesso."
+E clico no botão OK
+E Clico no botão voltar
+E excluo o cadastro gerado no teste com o codigo "Localidade2"
+
+Cenario: Cadastrar localidade de origem com sucesso
+Dado que acesso a tela "Cadastro", "Localidades"
+E clico no botão Cadastro
+Quando preencho o campo Codigo "Localidade3",  Nome "Localidade3" e Descrição "Localidade3"
+Quando seleciono o tipo de localidade "Origem"
+Quando seleciono a restrição geral "RESLOCDEPLOC"
+Quando seleciono o tempo de espera "TEMPESPDEPLOC"
+Quando seleciono a restrição "RESLOCDEPLOC" para o embarcador "EMBDEPLOC"
+Quando seleciono o Pais "Brasil", estado "São Paulo" e cidade "São Paulo (SP)"
+Quando preencho o endereço "Av. Engenheiro Luís Carlos Berrini"
+Quando preencho o CEP "04571011"
+Quando preencho a latitude "-23,610932"
+Quando preencho a longitude "-46,694757"
+Quando preencho o responsavel "Usuario1" e email "usuario1@teste.com"
+E clico no botão Salvar
+Entao é exibido a mensagem "A entidade foi salva com sucesso."
+E clico no botão OK
+E Clico no botão voltar
+E excluo o cadastro gerado no teste com o codigo "Localidade3"
+
+Cenario: Cadastrar localidade hub de passagem com sucesso
+Dado que acesso a tela "Cadastro", "Localidades"
+E clico no botão Cadastro
+Quando preencho o campo Codigo "Localidade4",  Nome "Localidade4" e Descrição "Localidade4"
+Quando seleciono o tipo de localidade "Ambos"
+Quando seleciona HUB de Passagem
+Quando seleciono a restrição geral "RESLOCDEPLOC"
+Quando seleciono o tempo de espera "TEMPESPDEPLOC"
+Quando seleciono a restrição "RESLOCDEPLOC" para o embarcador "EMBDEPLOC"
+Quando seleciono o Pais "Brasil", estado "São Paulo" e cidade "São Paulo (SP)"
+Quando preencho o endereço "Av. Engenheiro Luís Carlos Berrini"
+Quando preencho o CEP "04571011"
+Quando preencho a latitude "-23,610932"
+Quando preencho a longitude "-46,694757"
+Quando preencho o responsavel "Usuario1" e email "usuario1@teste.com"
+E clico no botão Salvar
+Entao é exibido a mensagem "A entidade foi salva com sucesso."
+E clico no botão OK
+E Clico no botão voltar
+E excluo o cadastro gerado no teste com o codigo "Localidade4"
+
+Cenario: Cadastrar localidade ambos com sucesso
+Dado que acesso a tela "Cadastro", "Localidades"
+E clico no botão Cadastro
+Quando preencho o campo Codigo "Localidade5",  Nome "Localidade5" e Descrição "Localidade5"
+Quando seleciono o tipo de localidade "Ambos"
+Quando seleciona Hub de Destino
+Quando seleciona HUB de Passagem
+Quando seleciono a restrição geral "RESLOCDEPLOC"
+Quando seleciono o tempo de espera "TEMPESPDEPLOC"
+Quando seleciono a restrição "RESLOCDEPLOC" para o embarcador "EMBDEPLOC"
+Quando seleciono o Pais "Brasil", estado "São Paulo" e cidade "São Paulo (SP)"
+Quando preencho o endereço "Av. Engenheiro Luís Carlos Berrini"
+Quando preencho o CEP "04571011"
+Quando preencho a latitude "-23,610932"
+Quando preencho a longitude "-46,694757"
+Quando preencho o responsavel "Usuario1" e email "usuario1@teste.com"
+E clico no botão Salvar
+Entao é exibido a mensagem "A entidade foi salva com sucesso."
+E clico no botão OK
+E Clico no botão voltar
+E excluo o cadastro gerado no teste com o codigo "Localidade5"
+
+Cenario: Cadastrar localidade sem sucesso - localidade já existe
+Dado que acesso a tela "Cadastro", "Localidades"
+E clico no botão Cadastro
+Quando preencho o campo Codigo "Localidade6",  Nome "Localidade6" e Descrição "Localidade6"
+Quando seleciono o tipo de localidade "Destino"
+Quando seleciono a restrição geral "RESLOCDEPLOC"
+Quando seleciono o tempo de espera "TEMPESPDEPLOC"
+Quando seleciono a restrição "RESLOCDEPLOC" para o embarcador "EMBDEPLOC"
+Quando seleciono o Pais "Brasil", estado "São Paulo" e cidade "São Paulo (SP)"
+Quando preencho o endereço "Av. Engenheiro Luís Carlos Berrini"
+Quando preencho o CEP "04571011"
+Quando preencho a latitude "-23,610932"
+Quando preencho a longitude "-46,694757"
+Quando preencho o responsavel "Usuario1" e email "usuario1@teste.com"
+E clico no botão Salvar e confirmo
+E Clico no botão voltar
+Dado que acesso a tela "Cadastro", "Localidades"
+E clico no botão Cadastro
+Quando preencho o campo Codigo "Localidade6",  Nome "Localidade6" e Descrição "Localidade6"
+Quando seleciono o tipo de localidade "Destino"
+Quando seleciono a restrição geral "RESLOCDEPLOC"
+Quando seleciono o tempo de espera "TEMPESPDEPLOC"
+Quando seleciono a restrição "RESLOCDEPLOC" para o embarcador "EMBDEPLOC"
+Quando seleciono o Pais "Brasil", estado "São Paulo" e cidade "São Paulo (SP)"
+Quando preencho o endereço "Av. Engenheiro Luís Carlos Berrini"
+Quando preencho o CEP "04571011"
+Quando preencho a latitude "-23,610932"
+Quando preencho a longitude "-46,694757"
+Quando preencho o responsavel "Usuario1" e email "usuario1@teste.com"
+E clico no botão Salvar
+Entao é exibido a mensagem "Já existe uma entidade com o código informado."
+E clico no botão OK
+E Clico no botão voltar
+E excluo o cadastro gerado no teste com o codigo "Localidade6"
+
+Cenario: Cadastrar localidade sem sucesso - código não preenchido
+Dado que acesso a tela "Cadastro", "Localidades"
+E clico no botão Cadastro
+Quando preencho o campo Codigo " ",  Nome "Localidade7" e Descrição "Localidade7"
+Quando seleciono o tipo de localidade "Destino"
+Quando seleciono a restrição geral "RESLOCDEPLOC"
+Quando seleciono o tempo de espera "TEMPESPDEPLOC"
+Quando seleciono a restrição "RESLOCDEPLOC" para o embarcador "EMBDEPLOC"
+Quando seleciono o Pais "Brasil", estado "São Paulo" e cidade "São Paulo (SP)"
+Quando preencho o endereço "Av. Engenheiro Luís Carlos Berrini"
+Quando preencho o CEP "04571011"
+Quando preencho a latitude "-23,610932"
+Quando preencho a longitude "-46,694757"
+Quando preencho o responsavel "Usuario1" e email "usuario1@teste.com"
+E clico no botão Salvar
+Entao é exibido a mensagem "O campo código está vazio."
+
+Cenario: Cadastrar localidade sem sucesso - nome não preenchido
+Dado que acesso a tela "Cadastro", "Localidades"
+E clico no botão Cadastro
+Quando preencho o campo Codigo "Localidade7",  Nome " " e Descrição "Localidade7"
+Quando seleciono o tipo de localidade "Destino"
+Quando seleciono a restrição geral "RESLOCDEPLOC"
+Quando seleciono o tempo de espera "TEMPESPDEPLOC"
+Quando seleciono a restrição "RESLOCDEPLOC" para o embarcador "EMBDEPLOC"
+Quando seleciono o Pais "Brasil", estado "São Paulo" e cidade "São Paulo (SP)"
+Quando preencho o endereço "Av. Engenheiro Luís Carlos Berrini"
+Quando preencho o CEP "04571011"
+Quando preencho a latitude "-23,610932"
+Quando preencho a longitude "-46,694757"
+Quando preencho o responsavel "Usuario1" e email "usuario1@teste.com"
+E clico no botão Salvar
+Entao é exibido a mensagem "O campo nome está vazio."
+
+Cenario: Cadastrar localidade sem sucesso - descrição não preenchida
+Dado que acesso a tela "Cadastro", "Localidades"
+E clico no botão Cadastro
+Quando preencho o campo Codigo "Localidade7",  Nome "Localidade7" e Descrição " "
+Quando seleciono o tipo de localidade "Destino"
+Quando seleciono a restrição geral "RESLOCDEPLOC"
+Quando seleciono o tempo de espera "TEMPESPDEPLOC"
+Quando seleciono a restrição "RESLOCDEPLOC" para o embarcador "EMBDEPLOC"
+Quando seleciono o Pais "Brasil", estado "São Paulo" e cidade "São Paulo (SP)"
+Quando preencho o endereço "Av. Engenheiro Luís Carlos Berrini"
+Quando preencho o CEP "04571011"
+Quando preencho a latitude "-23,610932"
+Quando preencho a longitude "-46,694757"
+Quando preencho o responsavel "Usuario1" e email "usuario1@teste.com"
+E clico no botão Salvar
+Entao é exibido a mensagem "O campo descrição está vazio."
+
+Cenario: Cadastrar localidade sem sucesso - tipo não preenchido
+Dado que acesso a tela "Cadastro", "Localidades"
+E clico no botão Cadastro
+Quando preencho o campo Codigo "Localidade7",  Nome "Localidade7" e Descrição "Localidade7"
+Quando seleciono a restrição geral "RESLOCDEPLOC"
+Quando seleciono o tempo de espera "TEMPESPDEPLOC"
+Quando seleciono a restrição "RESLOCDEPLOC" para o embarcador "EMBDEPLOC"
+Quando seleciono o Pais "Brasil", estado "São Paulo" e cidade "São Paulo (SP)"
+Quando preencho o endereço "Av. Engenheiro Luís Carlos Berrini"
+Quando preencho o CEP "04571011"
+Quando preencho a latitude "-23,610932"
+Quando preencho a longitude "-46,694757"
+Quando preencho o responsavel "Usuario1" e email "usuario1@teste.com"
+E clico no botão Salvar
+Entao é exibido a mensagem "O campo tipo deve ser preenchido"
+
+Cenario: Cadastrar localidade sem sucesso - restrição de localidade não preenchida
+Dado que acesso a tela "Cadastro", "Localidades"
+E clico no botão Cadastro
+Quando preencho o campo Codigo "Localidade7",  Nome "Localidade7" e Descrição "Localidade7"
+Quando seleciono o tipo de localidade "Destino"
+Quando seleciono o tempo de espera "TEMPESPDEPLOC"
+Quando seleciono a restrição "RESLOCDEPLOC" para o embarcador "EMBDEPLOC"
+Quando seleciono o Pais "Brasil", estado "São Paulo" e cidade "São Paulo (SP)"
+Quando preencho o endereço "Av. Engenheiro Luís Carlos Berrini"
+Quando preencho o CEP "04571011"
+Quando preencho a latitude "-23,610932"
+Quando preencho a longitude "-46,694757"
+Quando preencho o responsavel "Usuario1" e email "usuario1@teste.com"
+E clico no botão Salvar
+Entao é exibido a mensagem "A restrição de localidade não pode ser nula."
+
+Cenario: Cadastrar localidade sem sucesso - logradouro não preenchido
+Dado que acesso a tela "Cadastro", "Localidades"
+E clico no botão Cadastro
+Quando preencho o campo Codigo "Localidade8",  Nome "Localidade8" e Descrição "Localidade8"
+Quando seleciono o tipo de localidade "Destino"
+Quando seleciono a restrição geral "RESLOCDEPLOC"
+Quando seleciono o tempo de espera "TEMPESPDEPLOC"
+Quando seleciono a restrição "RESLOCDEPLOC" para o embarcador "EMBDEPLOC"
+Quando seleciono o Pais "Brasil", estado "São Paulo" e cidade "São Paulo (SP)"
+Quando preencho o CEP "04571011"
+Quando preencho a latitude "-23,610932"
+Quando preencho a longitude "-46,694757"
+Quando preencho o responsavel "Usuario1" e email "usuario1@teste.com"
+E clico no botão Salvar
+Entao é exibido a mensagem "A rua deve ser preenchida."
+
+Cenario: Cadastrar localidade sem sucesso - CEP não preenchido
+Dado que acesso a tela "Cadastro", "Localidades"
+E clico no botão Cadastro
+Quando preencho o campo Codigo "Localidade9",  Nome "Localidade9" e Descrição "Localidade9"
+Quando seleciono o tipo de localidade "Destino"
+Quando seleciono a restrição geral "RESLOCDEPLOC"
+Quando seleciono o tempo de espera "TEMPESPDEPLOC"
+Quando seleciono a restrição "RESLOCDEPLOC" para o embarcador "EMBDEPLOC"
+Quando seleciono o Pais "Brasil", estado "São Paulo" e cidade "São Paulo (SP)"
+Quando preencho o endereço "Av. Engenheiro Luís Carlos Berrini"
+Quando preencho a latitude "-23,610932"
+Quando preencho a longitude "-46,694757"
+Quando preencho o responsavel "Usuario1" e email "usuario1@teste.com"
+E clico no botão Salvar
+Entao é exibido a mensagem "O campo CEP deve ser preenchido"
+
+Cenario: Cadastrar localidade sem sucesso - cidade não preenchida
+Dado que acesso a tela "Cadastro", "Localidades"
+E clico no botão Cadastro
+Quando preencho o campo Codigo "Localidade11",  Nome "Localidade11" e Descrição "Localidade11"
+Quando seleciono o tipo de localidade "Destino"
+Quando seleciono a restrição geral "RESLOCDEPLOC"
+Quando seleciono o tempo de espera "TEMPESPDEPLOC"
+Quando seleciono a restrição "RESLOCDEPLOC" para o embarcador "EMBDEPLOC"
+Quando seleciono o Pais "Brasil", estado "São Paulo" e cidade " "
+Quando preencho o endereço "Av. Engenheiro Luís Carlos Berrini"
+Quando preencho o CEP "04571011"
+Quando preencho a latitude "-23,610932"
+Quando preencho a longitude "-46,694757"
+Quando preencho o responsavel "Usuario1" e email "usuario1@teste.com"
+E clico no botão Salvar
+Entao é exibido a mensagem Cidade inválida. A cidade deve ser preenchida.
+
+Cenario: Cadastrar localidade sem sucesso - Latitude não preenchida
+Dado que acesso a tela "Cadastro", "Localidades"
+E clico no botão Cadastro
+Quando preencho o campo Codigo "Localidade91",  Nome "Localidade91" e Descrição "Localidade91"
+Quando seleciono o tipo de localidade "Destino"
+Quando seleciono a restrição geral "RESLOCDEPLOC"
+Quando seleciono o tempo de espera "TEMPESPDEPLOC"
+Quando seleciono a restrição "RESLOCDEPLOC" para o embarcador "EMBDEPLOC"
+Quando seleciono o Pais "Brasil", estado "São Paulo" e cidade "São Paulo (SP)"
+Quando preencho o endereço "Av. Engenheiro Luís Carlos Berrini"
+Quando preencho o CEP "04571011"
+Quando preencho a longitude "-46,533574"
+Quando preencho o responsavel "Usuario1" e email "usuario1@teste.com"
+E clico no botão Salvar
+Entao é exibido a mensagem "A latitude não pode ser nula."
+
+Cenario: Cadastrar localidade sem sucesso - Longitude não preenchida
+Dado que acesso a tela "Cadastro", "Localidades"
+E clico no botão Cadastro
+Quando preencho o campo Codigo "Localidade92",  Nome "Localidade92" e Descrição "Localidade92"
+Quando seleciono o tipo de localidade "Destino"
+Quando seleciono a restrição geral "RESLOCDEPLOC"
+Quando seleciono o tempo de espera "TEMPESPDEPLOC"
+Quando seleciono a restrição "RESLOCDEPLOC" para o embarcador "EMBDEPLOC"
+Quando seleciono o Pais "Brasil", estado "São Paulo" e cidade "São Paulo (SP)"
+Quando preencho o endereço "Av. Engenheiro Luís Carlos Berrini"
+Quando preencho o CEP "04571011"
+Quando preencho a latitude "-23,675327"
+Quando preencho o responsavel "Usuario1" e email "usuario1@teste.com"
+E clico no botão Salvar
+Entao é exibido a mensagem "A longitude não pode ser nula."
+
+Cenario: Copiar localidade com sucesso
+Dado que acesso a tela "Cadastro", "Localidades"
+E clico no botão Cadastro
+Quando preencho o campo Codigo "Localidade12",  Nome "Localidade12" e Descrição "Localidade12"
+Quando seleciono o tipo de localidade "Destino"
+Quando seleciono a restrição geral "RESLOCDEPLOC"
+Quando seleciono o tempo de espera "TEMPESPDEPLOC"
+Quando seleciono a restrição "RESLOCDEPLOC" para o embarcador "EMBDEPLOC"
+Quando seleciono o Pais "Brasil", estado "São Paulo" e cidade "São Paulo (SP)"
+Quando preencho o endereço "Av. Engenheiro Luís Carlos Berrini"
+Quando preencho o CEP "04571011"
+Quando preencho a latitude "-23,610932"
+Quando preencho a longitude "-46,694757"
+Quando preencho o responsavel "Usuario1" e email "usuario1@teste.com"
+E clico no botão Salvar e confirmo
+E Clico no botão voltar
+Quando realizo o filtro com o codigo "Localidade12"
+E clico no botão copiar
+Quando preencho o campo Codigo "Localidade13",  Nome "Localidade13" e Descrição "Localidade13"
+E clico no botão Salvar
+Entao é exibido a mensagem "A entidade foi salva com sucesso."
+E clico no botão OK
+E Clico no botão voltar
+E excluo o cadastro gerado no teste com o codigo "Localidade12"
+E excluo o cadastro gerado no teste com o codigo "Localidade13"
+
+Cenario: Copiar localidade sem sucesso - localidade já existe
+Dado que acesso a tela "Cadastro", "Localidades"
+E clico no botão Cadastro
+Quando preencho o campo Codigo "Localidade14",  Nome "Localidade14" e Descrição "Localidade14"
+Quando seleciono o tipo de localidade "Destino"
+Quando seleciono a restrição geral "RESLOCDEPLOC"
+Quando seleciono o tempo de espera "TEMPESPDEPLOC"
+Quando seleciono a restrição "RESLOCDEPLOC" para o embarcador "EMBDEPLOC"
+Quando seleciono o Pais "Brasil", estado "São Paulo" e cidade "São Paulo (SP)"
+Quando preencho o endereço "Av. Engenheiro Luís Carlos Berrini"
+Quando preencho o CEP "04571011"
+Quando preencho a latitude "-23,610932"
+Quando preencho a longitude "-46,694757"
+Quando preencho o responsavel "Usuario1" e email "usuario1@teste.com"
+E clico no botão Salvar e confirmo
+E Clico no botão voltar
+Quando realizo o filtro com o codigo "Localidade14"
+E clico no botão copiar
+Quando preencho o campo Codigo "Localidade14",  Nome "Localidade14" e Descrição "Localidade14"
+E clico no botão Salvar
+Entao é exibido a mensagem "Já existe uma entidade com o código informado."
+E clico no botão OK
+E Clico no botão voltar
+E excluo o cadastro gerado no teste com o codigo "Localidade14"
+
+Cenario: Copiar localidade sem sucesso - código não preenchido
+Dado que acesso a tela "Cadastro", "Localidades"
+E clico no botão Cadastro
+Quando preencho o campo Codigo "Localidade15",  Nome "Localidade15" e Descrição "Localidade15"
+Quando seleciono o tipo de localidade "Destino"
+Quando seleciono a restrição geral "RESLOCDEPLOC"
+Quando seleciono o tempo de espera "TEMPESPDEPLOC"
+Quando seleciono a restrição "RESLOCDEPLOC" para o embarcador "EMBDEPLOC"
+Quando seleciono o Pais "Brasil", estado "São Paulo" e cidade "São Paulo (SP)"
+Quando preencho o endereço "Av. Engenheiro Luís Carlos Berrini"
+Quando preencho o CEP "04571011"
+Quando preencho a latitude "-23,610932"
+Quando preencho a longitude "-46,694757"
+Quando preencho o responsavel "Usuario1" e email "usuario1@teste.com"
+E clico no botão Salvar e confirmo
+E Clico no botão voltar
+Quando realizo o filtro com o codigo "Localidade15"
+E clico no botão copiar
+Quando preencho o campo Codigo " ",  Nome "Localidade16" e Descrição "Localidade16"
+E clico no botão Salvar
+Entao é exibido a mensagem "O campo código está vazio."
+E clico no botão OK
+E Clico no botão voltar
+E excluo o cadastro gerado no teste com o codigo "Localidade15"
+
+Cenario: Copiar localidade sem sucesso - nome não preenchido
+Dado que acesso a tela "Cadastro", "Localidades"
+E clico no botão Cadastro
+Quando preencho o campo Codigo "Localidade16",  Nome "Localidade16" e Descrição "Localidade16"
+Quando seleciono o tipo de localidade "Destino"
+Quando seleciono a restrição geral "RESLOCDEPLOC"
+Quando seleciono o tempo de espera "TEMPESPDEPLOC"
+Quando seleciono a restrição "RESLOCDEPLOC" para o embarcador "EMBDEPLOC"
+Quando seleciono o Pais "Brasil", estado "São Paulo" e cidade "São Paulo (SP)"
+Quando preencho o endereço "Av. Engenheiro Luís Carlos Berrini"
+Quando preencho o CEP "04571011"
+Quando preencho a latitude "-23,610932"
+Quando preencho a longitude "-46,694757"
+Quando preencho o responsavel "Usuario1" e email "usuario1@teste.com"
+E clico no botão Salvar e confirmo
+E Clico no botão voltar
+Quando realizo o filtro com o codigo "Localidade16"
+E clico no botão copiar
+Quando preencho o campo Codigo "Localidade17",  Nome " " e Descrição "Localidade17"
+E clico no botão Salvar
+Entao é exibido a mensagem "O campo nome está vazio."
+E clico no botão OK
+E Clico no botão voltar
+E excluo o cadastro gerado no teste com o codigo "Localidade16"
+
+Cenario: Copiar localidade sem sucesso - descrição não preenchida
+Dado que acesso a tela "Cadastro", "Localidades"
+E clico no botão Cadastro
+Quando preencho o campo Codigo "Localidade17",  Nome "Localidade17" e Descrição "Localidade17"
+Quando seleciono o tipo de localidade "Destino"
+Quando seleciono a restrição geral "RESLOCDEPLOC"
+Quando seleciono o tempo de espera "TEMPESPDEPLOC"
+Quando seleciono a restrição "RESLOCDEPLOC" para o embarcador "EMBDEPLOC"
+Quando seleciono o Pais "Brasil", estado "São Paulo" e cidade "São Paulo (SP)"
+Quando preencho o endereço "Av. Engenheiro Luís Carlos Berrini"
+Quando preencho o CEP "04571011"
+Quando preencho a latitude "-23,610932"
+Quando preencho a longitude "-46,694757"
+Quando preencho o responsavel "Usuario1" e email "usuario1@teste.com"
+E clico no botão Salvar e confirmo
+E Clico no botão voltar
+Quando realizo o filtro com o codigo "Localidade17"
+E clico no botão copiar
+Quando preencho o campo Codigo "Localidade18",  Nome "Localidade18" e Descrição " "
+E clico no botão Salvar
+Entao é exibido a mensagem "O campo descrição está vazio."
+E clico no botão OK
+E Clico no botão voltar
+E excluo o cadastro gerado no teste com o codigo "Localidade17"
+
+Cenario: Editar localidade com sucesso
+Dado que acesso a tela "Cadastro", "Localidades"
+E clico no botão Cadastro
+Quando preencho o campo Codigo "Localidade18",  Nome "Localidade18" e Descrição "Localidade18"
+Quando seleciono o tipo de localidade "Destino"
+Quando seleciono a restrição geral "RESLOCDEPLOC"
+Quando seleciono o tempo de espera "TEMPESPDEPLOC"
+Quando seleciono a restrição "RESLOCDEPLOC" para o embarcador "EMBDEPLOC"
+Quando seleciono o Pais "Brasil", estado "São Paulo" e cidade "São Paulo (SP)"
+Quando preencho o endereço "Av. Engenheiro Luís Carlos Berrini"
+Quando preencho o CEP "04571011"
+Quando preencho a latitude "-23,610932"
+Quando preencho a longitude "-46,694757"
+Quando preencho o responsavel "Usuario1" e email "usuario1@teste.com"
+E clico no botão Salvar e confirmo
+E Clico no botão voltar
+Quando realizo o filtro com o codigo "Localidade18"
+E clico no botão editar
+Quando altero o campo  Nome "alterado" e Descrição "alterado"
+E clico no botão Salvar
+Entao é exibido a mensagem "A entidade foi salva com sucesso."
+E clico no botão OK
+E Clico no botão voltar
+E excluo o cadastro gerado no teste com o codigo "Localidade18"
+
+Cenario: Editar localidade com sucesso - alterar tipo com hub de destino ligado
+Dado que acesso a tela "Cadastro", "Localidades"
+E clico no botão Cadastro
+Quando preencho o campo Codigo "Localidade19",  Nome "Localidade19" e Descrição "Localidade19"
+Quando seleciono o tipo de localidade "Destino"
+Quando seleciona Hub de Destino
+Quando seleciono a restrição geral "RESLOCDEPLOC"
+Quando seleciono o tempo de espera "TEMPESPDEPLOC"
+Quando seleciono a restrição "RESLOCDEPLOC" para o embarcador "EMBDEPLOC"
+Quando seleciono o Pais "Brasil", estado "São Paulo" e cidade "São Paulo (SP)"
+Quando preencho o endereço "Av. Engenheiro Luís Carlos Berrini"
+Quando preencho o CEP "04571011"
+Quando preencho a latitude "-23,610932"
+Quando preencho a longitude "-46,694757"
+Quando preencho o responsavel "Usuario1" e email "usuario1@teste.com"
+E clico no botão Salvar e confirmo
+E Clico no botão voltar
+Quando realizo o filtro com o codigo "Localidade19"
+E clico no botão editar
+Quando altero o campo  Nome "alterado" e Descrição "alterado"
+Quando seleciono o tipo de localidade "Ambos"
+E clico no botão Salvar
+Entao é exibido a mensagem "A entidade foi salva com sucesso."
+E clico no botão OK
+E Clico no botão voltar
+E excluo o cadastro gerado no teste com o codigo "Localidade19"
+
+Cenario: Editar localidade sem sucesso - apagar o nome
+Dado que acesso a tela "Cadastro", "Localidades"
+E clico no botão Cadastro
+Quando preencho o campo Codigo "Localidade20",  Nome "Localidade20" e Descrição "Localidade20"
+Quando seleciono o tipo de localidade "Destino"
+Quando seleciona Hub de Destino
+Quando seleciono a restrição geral "RESLOCDEPLOC"
+Quando seleciono o tempo de espera "TEMPESPDEPLOC"
+Quando seleciono a restrição "RESLOCDEPLOC" para o embarcador "EMBDEPLOC"
+Quando seleciono o Pais "Brasil", estado "São Paulo" e cidade "São Paulo (SP)"
+Quando preencho o endereço "Av. Engenheiro Luís Carlos Berrini"
+Quando preencho o CEP "04571011"
+Quando preencho a latitude "-23,610932"
+Quando preencho a longitude "-46,694757"
+Quando preencho o responsavel "Usuario1" e email "usuario1@teste.com"
+E clico no botão Salvar e confirmo
+E Clico no botão voltar
+Quando realizo o filtro com o codigo "Localidade20"
+E clico no botão editar
+Quando altero o campo  Nome " " e Descrição "alterado"
+E clico no botão Salvar
+Entao é exibido a mensagem "O campo nome está vazio."
+E clico no botão OK
+E Clico no botão voltar
+E excluo o cadastro gerado no teste com o codigo "Localidade20"
+
+Cenario: Editar localidade sem sucesso - apagar a descrição
+Dado que acesso a tela "Cadastro", "Localidades"
+E clico no botão Cadastro
+Quando preencho o campo Codigo "Localidade21",  Nome "Localidade21" e Descrição "Localidade21"
+Quando seleciono o tipo de localidade "Destino"
+Quando seleciona Hub de Destino
+Quando seleciono a restrição geral "RESLOCDEPLOC"
+Quando seleciono o tempo de espera "TEMPESPDEPLOC"
+Quando seleciono a restrição "RESLOCDEPLOC" para o embarcador "EMBDEPLOC"
+Quando seleciono o Pais "Brasil", estado "São Paulo" e cidade "São Paulo (SP)"
+Quando preencho o endereço "Av. Engenheiro Luís Carlos Berrini"
+Quando preencho o CEP "04571011"
+Quando preencho a latitude "-23,610932"
+Quando preencho a longitude "-46,694757"
+Quando preencho o responsavel "Usuario1" e email "usuario1@teste.com"
+E clico no botão Salvar e confirmo
+E Clico no botão voltar
+Quando realizo o filtro com o codigo "Localidade21"
+E clico no botão editar
+Quando altero o campo  Nome "alterado" e Descrição " "
+E clico no botão Salvar
+Entao é exibido a mensagem "O campo descrição está vazio."
+E clico no botão OK
+E Clico no botão voltar
+E excluo o cadastro gerado no teste com o codigo "Localidade21"
+
+Cenario: Excluir localidade sem sucesso - dependência - localidade de origem utilizada em outra como alternativa
+Dado que acesso a tela "Cadastro", "Localidades"
+E clico no botão Cadastro
+Quando preencho o campo Codigo "Localidade22",  Nome "Localidade22" e Descrição "Localidade22"
+Quando seleciono o tipo de localidade "Origem"
+Quando seleciono a restrição geral "RESLOCDEPLOC"
+Quando seleciono o tempo de espera "TEMPESPDEPLOC"
+Quando seleciono a restrição "RESLOCDEPLOC" para o embarcador "EMBDEPLOC"
+Quando seleciono o Pais "Brasil", estado "São Paulo" e cidade "São Paulo (SP)"
+Quando preencho o endereço "Av. Engenheiro Luís Carlos Berrini"
+Quando preencho o CEP "04571011"
+Quando preencho a latitude "-23,610932"
+Quando preencho a longitude "-46,694757"
+Quando preencho o responsavel "Usuario1" e email "usuario1@teste.com"
+Quando seleciono local de origem "ORIDEPLOC"
+E clico no botão Salvar e confirmo
+E Clico no botão voltar
+Quando realizo o filtro com o codigo "ORIDEPLOC"
+E clico no botão Excluir e confirmo
+Entao é exibido a mensagem A localidade está em uso como local de origem das seguintes localidades: Localidade22
+E clico no botão OK
+E excluo o cadastro gerado no teste com o codigo "Localidade22"
+
+Cenario: Excluir localidade sem sucesso - dependência - localidade de destino utilizada em outra como alternativa
+Dado que acesso a tela "Cadastro", "Localidades"
+E clico no botão Cadastro
+Quando preencho o campo Codigo "Localidade23",  Nome "Localidade23" e Descrição "Localidade23"
+Quando seleciono o tipo de localidade "Destino"
+Quando seleciono a restrição geral "RESLOCDEPLOC"
+Quando seleciono o tempo de espera "TEMPESPDEPLOC"
+Quando seleciono a restrição "RESLOCDEPLOC" para o embarcador "EMBDEPLOC"
+Quando seleciono o Pais "Brasil", estado "São Paulo" e cidade "São Paulo (SP)"
+Quando preencho o endereço "Av. Engenheiro Luís Carlos Berrini"
+Quando preencho o CEP "04571011"
+Quando preencho a latitude "-23,610932"
+Quando preencho a longitude "-46,694757"
+Quando preencho o responsavel "Usuario1" e email "usuario1@teste.com"
+Quando seleciono local de destino "DESTDEPLOC"
+E clico no botão Salvar e confirmo
+E Clico no botão voltar
+Quando realizo o filtro com o codigo "DESTDEPLOC"
+E clico no botão Excluir e confirmo
+Entao é exibido a mensagem A localidade está em uso como local de destino das seguintes localidades: Localidade23
+E clico no botão OK
+E excluo o cadastro gerado no teste com o codigo "Localidade23"
+
+Cenario: Excluir Dependências
+Dado que excluo a zona de transporte "ZTDEPLOC"
+Dado que excluo o agrupador de zt "AZTDEPLOC"
+Dado que excluo a localidade "ORIDEPLOC"
+Dado que excluo a localidade "DESTDEPLOC"
+Dado que excluo a restrição de localidade "RESLOCDEPLOC"
+Dado que excluo o embarcador "EMBDEPLOC"
+Dado que excluo o tempo de espera "TEMPESPDEPLOC"

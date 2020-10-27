@@ -1,0 +1,8 @@
+{
+    "git.ignoreLegacyWarning": true,
+    "window.zoomLevel": 0,
+    "terminal.integrated.shell.windows": "C:\\WINDOWS\\System32\\cmd.exe",
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "cucumberautocomplete.syncfeatures": "test/features/**/*.feature",
+    "cucumberautocomplete.steps": "test/CPL/**/*.js",
+}

@@ -1,0 +1,7 @@
+# seleniumAddress=http://127.0.0.1:4444/wd/hub
+seleniumAddress=http://localhost:4444/wd/hub
+# seleniumAddress=http://10.5.3.127:4444/wd/hub
+pageTimeOut=9000000
+scriptTimeout=9000000
+featurePath=test/features/**/*.feature
+stepsPath=test/CPL/**/*.js

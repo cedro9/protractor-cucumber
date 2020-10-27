@@ -1,0 +1,11 @@
+PROCESSO PARA CONFIGURAÇÃO DE AMBIENTE E EXECUÇÃO DOS TESTES AUTOMATIZADOS
+
+1 - CONFIGURAÇÃO DO AMBIENTE
+- Instalar o NODE.js (https://nodejs.org)
+- Fazer o download do projeto que esta no svn (svn://nlg07v/CPL/Cockpit.Logistico/branches/6.3.0/front-end-automated-tests)
+- Dentro da pasta do projeto de automação (front-end-automated-tests), executar a batch "InstalardoAmbiente.bat" (necessario usuario com permissão de administrador)
+
+2 - EXECUÇÃO DA SUITE DE TESTE
+- Dentro da pasta do projeto de automação, executar a batch da suite de teste de acordo com o projeto/cliente "Execução_Teste_<nomedaSUITE>.bat
+- A batch ira abrir um prompt solicitando as Informações do ambiente.
+- Apos a execução, o relatorio sera aberto automaticamente para avaliação do analista
